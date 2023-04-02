@@ -28,7 +28,7 @@ dps310.wait_pressure_ready()
 start = []
 temps = []
 i = 0
-while i < 1000:
+while i < 100:
     start.append(dps310.pressure)
     temps.append(dps310.temperature)
     i += 1
