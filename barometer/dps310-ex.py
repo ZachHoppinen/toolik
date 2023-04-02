@@ -11,7 +11,8 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 from adafruit_dps310.advanced import DPS310_Advanced as DPS310
 from adafruit_dps310 import advanced
-from atmosphere import calc_delta_height 
+from atmosphere import calc_delta_height
+from tqdm import tqdm
 
 
 i2c = board.I2C()  # uses board.SCL and board.SDA
@@ -40,20 +41,21 @@ start_pressure = np.mean(start)
 temp = np.mean(temps)
 print("Starting pressure: {}".format(start_pressure))
 
-times = []
+times = np.empty(1000, dtype = object)
 res = np.zeros(1000)
 
-plt.axis([0, len(res), -1, 1])
-x = 0
-for x in range(len(res)):
+# plt.axis([0, len(res), -1, 1])
+
+for x in tqdm(range(len(res))):
     # print(f"Pressure {dps310.pressure}")
-    d_alt = calc_delta_height(dps310.pressure, temp, start_pressure) 
-    t = datetime.now()
-    plt.scatter(x, d_alt, color = 'C0', s = 1)
-    plt.pause(0.1)
-    res[x] = d_alt
-    times.append(t)
+    # d_alt = calc_delta_height(dps310.pressure, temp, start_pressure) 
+    # t = datetime.now()
+    # plt.scatter(x, d_alt, color = 'C0', s = 1)
+    # plt.pause(0.1)
+    res[x] = calc_delta_height(dps310.pressure, temp, start_pressure) 
+    times[x] = datetime.now()
+    time.sleep(0.185)
 
 times = pd.to_datetime(pd.Series(times))
 df = pd.DataFrame(res, index = times)
-df.to_csv(f'dps310-{datetime.now()}')
+df.to_csv(f"./data/dps310-{datetime.now().strftime('%Y-%m-%dT%T')}")
