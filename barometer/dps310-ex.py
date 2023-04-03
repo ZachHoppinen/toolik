@@ -41,7 +41,7 @@ start_pressure = np.mean(start)
 temp = np.mean(temps)
 print("Starting pressure: {}".format(start_pressure))
 
-n = 10000
+n = 1000
 times = np.empty(n, dtype = object)
 res = np.zeros(n)
 
