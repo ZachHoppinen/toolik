@@ -32,7 +32,7 @@ time.sleep(1)
 start = []
 temps = []
 i = 0
-while i < 100:
+while i < 10:
     start.append(bmp280.pressure)
     temps.append(bmp280.temperature)
     i += 1
@@ -56,7 +56,6 @@ for x in tqdm(range(len(res))):
     # plt.pause(0.1)
     res[x] = calc_delta_height(bmp280.pressure, temp, start_pressure) 
     times[x] = datetime.now()
-    time.sleep(0.1)
 
 times = pd.to_datetime(pd.Series(times))
 df = pd.DataFrame(res, index = times)
