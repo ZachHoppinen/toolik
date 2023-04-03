@@ -41,8 +41,9 @@ start_pressure = np.mean(start)
 temp = np.mean(temps)
 print("Starting pressure: {}".format(start_pressure))
 
-times = np.empty(1000, dtype = object)
-res = np.zeros(1000)
+n = 10000
+times = np.empty(n, dtype = object)
+res = np.zeros(n)
 
 # plt.axis([0, len(res), -1, 1])
 
@@ -54,7 +55,7 @@ for x in tqdm(range(len(res))):
     # plt.pause(0.1)
     res[x] = calc_delta_height(dps310.pressure, temp, start_pressure) 
     times[x] = datetime.now()
-    time.sleep(0.185)
+    time.sleep(0.085)
 
 times = pd.to_datetime(pd.Series(times))
 df = pd.DataFrame(res, index = times)
