@@ -55,7 +55,7 @@ for x in tqdm(range(len(res))):
     # plt.pause(0.1)
     res[x] = calc_delta_height(dps310.pressure, temp, start_pressure) 
     times[x] = datetime.now()
-    time.sleep(0.185)
+    time.sleep(0.085)
 
 times = pd.to_datetime(pd.Series(times))
 df = pd.DataFrame(res, index = times)
