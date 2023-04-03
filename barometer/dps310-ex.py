@@ -41,8 +41,9 @@ start_pressure = np.mean(start)
 temp = np.mean(temps)
 print("Starting pressure: {}".format(start_pressure))
 
-times = np.empty(1000, dtype = object)
-res = np.zeros(1000)
+n = 10000
+times = np.empty(n, dtype = object)
+res = np.zeros(n)
 
 # plt.axis([0, len(res), -1, 1])
 
