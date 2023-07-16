@@ -84,10 +84,10 @@ enum rangeType_T
 using namespace NeoGPS;
 #define gpsPort Serial1
 #define GPS_BAUD 115200 // GPS module's baud rate
-static NMEAGPS gps;// This parses the GPS characters
+
 static gps_fix nextFix;// This holds the latest GPS fix
 static gps_fix startLocation; // starting GPS data
-static gps_fix currentFix; // starting GPS data
+static gps_fix currentFix; // current GPS data
 NeoGPS::time_t  startGPSTime = 0;
 uint16_t startGPSTimeMS = 0;
 
